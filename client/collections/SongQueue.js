@@ -9,16 +9,22 @@ var SongQueue = Songs.extend({
       }
     });
 
-    this.on('ended', function(){
+    this.on('dequeue', function(){
       this.remove(this.at(0));
+    });
+
+    this.on('ended', function(){
+      this.at(0).dequeue();
       if(this.length !== 0){
         this.playFirst();
       }
     });
 
-    this.on('dequeue', function(){
-      this.remove(this.at(0));
+    this.on('removed', function(song) {
+      this.remove(song);
     });
+
+   
   
   }, 
 

@@ -13,31 +13,14 @@ var AppModel = Backbone.Model.extend({
     getting called from the window (unless we override it, as we do here). */
 
 
-    params.library.on('play', function(song) {
+    params.library.on('play', function(song) {  //listener for play trigger
       this.set('currentSong', song);
     }, this);
 
     params.library.on('enqueue', function(song){
       this.set('songQueue', this.get('songQueue').add(song));
-      //if no current song is being played
-        //play the first song in the songQueue which is song
-     
-      // if((this.get('songQueue')).length === 1){
-      //   (this.get('songQueue')).playFirst();
-      // }
-      
     }, this);
 
-    //listener for 
-
-    // //if currentSong's playing attribute = false
-    params.library.on('change:playing', function(){
-      if(this.get('currentSong').isPlaying() === false){
-      var newSongQueue = (this.get('songQueue')).remove(this.get('currentSong'));
-       this.set('songQueue', newSongQueue);
-       this.get('songQueue').playFirst(); 
-      }
-    }, this);
   }
 
 });
