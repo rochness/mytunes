@@ -9,7 +9,7 @@ var PlayerView = Backbone.View.extend({
     var context = this;
     console.log('current song in player view',this.model);
     this.$el.on('ended', function(){
-      context.model.stopPlay();
+      context.model.ended();
     });
   },
 

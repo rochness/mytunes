@@ -21,7 +21,11 @@ var AppModel = Backbone.Model.extend({
       this.set('songQueue', this.get('songQueue').add(song));
       //if no current song is being played
         //play the first song in the songQueue which is song
-      if()
+     
+      // if((this.get('songQueue')).length === 1){
+      //   (this.get('songQueue')).playFirst();
+      // }
+      
     }, this);
 
     //listener for 
@@ -29,9 +33,9 @@ var AppModel = Backbone.Model.extend({
     // //if currentSong's playing attribute = false
     params.library.on('change:playing', function(){
       if(this.get('currentSong').isPlaying() === false){
-        var newSongQueue = (this.get('songQueue')).remove(this.get('currentSong'));
+      var newSongQueue = (this.get('songQueue')).remove(this.get('currentSong'));
        this.set('songQueue', newSongQueue);
-       this.get('songQueue').at(0).play(); 
+       this.get('songQueue').playFirst(); 
       }
     }, this);
   }

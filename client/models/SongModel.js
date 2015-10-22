@@ -16,8 +16,13 @@ var SongModel = Backbone.Model.extend({
     console.log('from SongModel - current song', this);
   },
 
-  stopPlay: function(){
+  ended: function(){
     this.set('playing', false);
+    this.trigger('ended', this);
+  },
+
+  dequeue: function(){
+    this.trigger('dequeue', this);
   },
 
   enqueue: function() {
