@@ -16,6 +16,24 @@ var AppModel = Backbone.Model.extend({
     params.library.on('play', function(song) {
       this.set('currentSong', song);
     }, this);
+
+    params.library.on('enqueue', function(song){
+      this.set('songQueue', this.get('songQueue').add(song));
+      //if no current song is being played
+        //play the first song in the songQueue which is song
+      if()
+    }, this);
+
+    //listener for 
+
+    // //if currentSong's playing attribute = false
+    params.library.on('change:playing', function(){
+      if(this.get('currentSong').isPlaying() === false){
+        var newSongQueue = (this.get('songQueue')).remove(this.get('currentSong'));
+       this.set('songQueue', newSongQueue);
+       this.get('songQueue').at(0).play(); 
+      }
+    }, this);
   }
 
 });
