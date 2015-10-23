@@ -9,8 +9,16 @@ var SongQueue = Songs.extend({
       }
     });
 
-    this.on('dequeue', function(){
-      this.remove(this.at(0));
+    this.on('dequeue', function(song){
+      if(song === this.at(0)){
+        this.at(0).stopPlay();
+        this.remove(song);
+        if(this.length !== 0){
+          this.playFirst();
+        }
+      } else {
+        this.remove(song);
+      }
     });
 
     this.on('ended', function(){
@@ -23,26 +31,11 @@ var SongQueue = Songs.extend({
     this.on('removed', function(song) {
       this.remove(song);
     });
-
-   
   
   }, 
 
   playFirst: function(){
     this.at(0).play();
   }
-
-  // add: function(song){
-  //   if(song === {
-  //     artist: 'data',
-  //     url: '/test/testsong.mp3',
-  //     title:'test song'
-  //   }){ debugger;}
-
-  //   this.models.push(song);
-  //   if(this.models.length === 1){
-  //     this.playFirst();
-  //   }
-  //}
 
 });
